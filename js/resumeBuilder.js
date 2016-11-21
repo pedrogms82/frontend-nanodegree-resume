@@ -22,40 +22,69 @@ var bio = {
 };
 
 
-var formattedRole = HTMLheaderRole.replace("%data%",bio.role);
-$("#header").prepend(formattedRole);
+var trabajos = [{
+      "employer" : "MPDL",
+      "name" : "Informatico",
+      "description" : "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis"
+    },{
+      "employer" : "Arysoft",
+      "name" : "CEO",
+      "description" : "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis"
+    }];
 
-var formattedName = HTMLheaderName.replace("%data%",bio.name);
-$("#header").prepend(formattedName);
+    var formattedRole = HTMLheaderRole.replace("%data%",bio.role);
+    $("#header").prepend(formattedRole);
 
-var formattedWM = HTMLwelcomeMsg.replace("%data%",bio.wellcomeMessage);
-$("#header").append(formattedWM);
+    var formattedName = HTMLheaderName.replace("%data%",bio.name);
+    $("#header").prepend(formattedName);
 
-var formattedBioPic = HTMLbioPic.replace("%data%",bio.pictureUrl);
-$("#header").append(formattedBioPic);
+    var formattedWM = HTMLwelcomeMsg.replace("%data%",bio.wellcomeMessage);
+    $("#header").append(formattedWM);
 
-var formattedMobile = HTMLmobile.replace("%data%",bio.contactInfo.mobile);
-$("#topContacts").append(formattedMobile);
+    var formattedBioPic = HTMLbioPic.replace("%data%",bio.pictureUrl);
+    $("#header").append(formattedBioPic);
 
-var formattedEmail = HTMLemail.replace("%data%",bio.contactInfo.email);
-$("#topContacts").append(formattedEmail);
+    var formattedMobile = HTMLmobile.replace("%data%",bio.contactInfo.mobile);
+    $("#topContacts").append(formattedMobile);
 
-var formattedGithub = HTMLgithub.replace("%data%",bio.contactInfo.github);
-$("#topContacts").append(formattedGithub);
+    var formattedEmail = HTMLemail.replace("%data%",bio.contactInfo.email);
+    $("#topContacts").append(formattedEmail);
 
-var formattedBlog = HTMLblog.replace("%data%",bio.contactInfo.blog);
-$("#topContacts").append(formattedBlog);
+    var formattedGithub = HTMLgithub.replace("%data%",bio.contactInfo.github);
+    $("#topContacts").append(formattedGithub);
 
-$("#header").append(HTMLskillsStart);
+    var formattedBlog = HTMLblog.replace("%data%",bio.contactInfo.blog);
+    $("#topContacts").append(formattedBlog);
 
-var formattedSkill;
-for (i = 0 ; i < bio.skills.length; i++){
-     formattedSkill = HTMLskills.replace("%data%",bio.skills[i]);
-    $("#header").append(formattedSkill);
+    $("#header").append(HTMLskillsStart);
+
+    var formattedSkill;
+    for (i = 0 ; i < bio.skills.length; i++){
+         formattedSkill = HTMLskills.replace("%data%",bio.skills[i]);
+        $("#header").append(formattedSkill);
+    }
+//for (i=0; i<trabajos.length;i++){
+function displayWork(){
+
+  for (job in trabajos){
+      console.log("entro");
+      $("#workExperience").append(HTMLworkStart);
+      console.log(HTMLworkStart);
+      var formattedHTMLworkEmployer = HTMLworkEmployer.replace("%data%",trabajos[job].employer);
+      //$(".work-entry").last().append(formattedHTMLworkEmployer);
+      console.log(formattedHTMLworkEmployer);
+      var formattedHTMLworkTitle = HTMLworkTitle.replace("%data%",trabajos[job].name);
+      var entry =  formattedHTMLworkEmployer + formattedHTMLworkTitle;
+      $(".work-entry").last().append(entry);
+      var descripcion = HTMLworkDescription.replace("%data%", trabajos[job].description);
+      $(".work-entry").last().append(descripcion);
+
+      console.log(formattedHTMLworkTitle);
+  }
 }
-   
+displayWork();
 
-
-
-
- 
+$(document).click(function(loc) {
+ console.log(loc);
+  logClicks(loc.clientX,loc.clientY);
+});
