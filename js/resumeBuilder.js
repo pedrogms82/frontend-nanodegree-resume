@@ -88,9 +88,14 @@ $(document).click(function(loc) {
  console.log(loc);
   logClicks(loc.clientX,loc.clientY);
 });
+$(document).click(function(loc) {
+ console.log(loc);
+  logClicks(loc.pageX,loc.pageY);
+});
 
 
-var proyects = [{
+var proyects = {};
+ proyects.projects= [{
     "title": "proyecto uno",
     "descripcion" : "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis"
   },{
@@ -98,19 +103,26 @@ var proyects = [{
     "descripcion" : "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis"
   }];
 
-console.log("Obj proyects", proyects);
+//console.log("Obj proyects", proyects);
 proyects.display = function () {
 
-  for (pro in proyects){
+  for (i in proyects.projects){
     $("#projects").append(HTMLprojectStart);
-
-    var fTitle = HTMLprojectTitle.replace("%data%",proyects[pro].title);
+  //  console.log(pro);
+    var fTitle = HTMLprojectTitle.replace("%data%",proyects.projects[i].title);
     $(".project-entry").last().append(fTitle);
 
-    var fDes = HTMLprojectTitle.replace("%data%",proyects[pro].descripcion);
+    var fDes = HTMLprojectDescription.replace("%data%",proyects.projects[i].descripcion);
     $(".project-entry").last().append(fDes);
   }
 
 };
 
 proyects.display();
+
+$("#mapDiv").append(googleMap);
+
+
+
+funcion();
+function funcion(){ console.log("Ejecuto funcion");}
